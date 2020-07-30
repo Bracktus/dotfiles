@@ -1,0 +1,44 @@
+#! /bin/sh
+
+bspc monitor -d I II III IV V
+
+# Spacing
+bspc config border_width         5
+bspc config window_gap          12
+bspc config top_padding 40
+
+# Misc
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+# Colours
+bspc config focused_border_color "#B0BFD1"
+
+#Rule
+bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a Chromium desktop='^2'
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+
+# Autostart----------------------------------
+
+#Kill if already running 
+killall -9 sxhkd dunst
+pkill -f music-notification.py
+
+#Launching daemons
+sxhkd &
+dunst &
+python3 ~/bin/music-notification.py &
+
+#Setting wallpaper
+feh --bg-scale --no-fehbg ~/pics/wallpapers/aleksovannaCrybaby.jpg
+
+#Launching bar
+~/.config/polybar/launch.sh
+
+#Airing anime fetcher
+python3 ~/bin/anime/getJSON.py
+

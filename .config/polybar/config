@@ -1,0 +1,160 @@
+;==========================================================
+
+[colors]
+background = #F1B5AD
+background-alt = #bfd7f4;
+foreground = #0C0D0C
+foreground-alt = #9e9d9d
+primary = #0C0D0C
+alert = #bd2c40
+
+[bar/main]
+width = 100%
+height = 30
+offset-y = 0.5%
+radius = 0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 3
+
+module-margin-left = 2
+module-margin-right = 2
+
+font-0 = Iosevka:size=13:weight=bold;2
+font-1 = Sarasa Mono SC,等距更纱黑体 SC:size=13:antialias=True;2
+font-2 = Iosevka Nerd Font:weight=light:size=13;2
+font-3 = fixed:pixelsize=13;1
+
+modules-left = bspwm
+modules-center = date
+modules-right = updates alsa wlan eth battery
+
+tray-position = right
+tray-padding = 2
+wm-restack = bspwm
+cursor-click = pointer
+cursor-scroll = ns-resize
+enable-ipc = true
+
+[module/bspwm]
+type = internal/bspwm
+
+label-focused = %icon%
+label-focused-background = ${colors.background}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+
+label-occupied = %icon%
+label-occupied-padding = 2
+
+label-urgent = %icon%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+label-empty = %icon%
+label-empty-foreground = ${colors.foreground}
+label-empty-padding = 2
+
+ws-icon-0 = I;一
+ws-icon-1 = II;二
+ws-icon-2 = III;三
+ws-icon-3 = IV;四
+ws-icon-4 = V;五
+ws-icon-5 = VI;六
+ws-icon-6 = VII;七
+ws-icon-7 = VIII;八
+ws-icon-8 = IX;九
+ws-icon-9 = X;十
+
+
+
+;=================NETWORKS===============
+
+[module/wlan]
+type = internal/network
+interface = wlp5s0
+interval = 3.0
+
+format-connected =   <label-connected>
+#format-connected-underline = #9f78e1
+label-connected = %essid%
+
+format-disconnected =
+
+[module/eth]
+type = internal/network
+interface = enp4s0
+interval = 3.0
+
+format-connected-prefix = ""
+format-connected-prefix-foreground = ${colors.foreground}
+label-connected = %local_ip%
+
+format-disconnected =
+
+
+[module/date]
+type = internal/date
+interval = 5
+
+date= "%a %B %d"
+time = %H:%M
+
+label = %date% %time%
+
+[module/alsa]
+type = internal/alsa
+
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage:3%%
+label-volume-foreground = ${root.foreground}
+
+format-muted-foreground = ${colors.foreground}
+label-muted = "婢"
+
+ramp-volume-0 = "奄"
+ramp-volume-1 = "奔"
+ramp-volume-2 = "墳"
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+format-full = ""
+
+animation-charging-0 = " " 
+animation-charging-1 = " "
+animation-charging-2 = " "
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = ${colors.foreground}
+
+[module/updates]
+type = custom/script
+exec = $HOME/bin/updates.sh
+interval = 5
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
