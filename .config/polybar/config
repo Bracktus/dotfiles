@@ -149,7 +149,7 @@ ramp-capacity-foreground = ${colors.foreground}
 [module/updates]
 type = custom/script
 exec = $HOME/bin/updates.sh
-interval = 5
+interval = 1000
 
 [settings]
 screenchange-reload = true
