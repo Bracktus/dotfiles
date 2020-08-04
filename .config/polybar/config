@@ -36,7 +36,7 @@ font-3 = fixed:pixelsize=13;1
 
 modules-left = bspwm
 modules-center = date
-modules-right = updates alsa wlan eth battery
+modules-right = updates pulseaudio wlan eth battery
 
 tray-position = right
 tray-padding = 2
@@ -75,8 +75,6 @@ ws-icon-7 = VIII;八
 ws-icon-8 = IX;九
 ws-icon-9 = X;十
 
-
-
 ;=================NETWORKS===============
 
 [module/wlan]
@@ -111,8 +109,8 @@ time = %H:%M
 
 label = %date% %time%
 
-[module/alsa]
-type = internal/alsa
+[module/pulseaudio]
+type = internal/pulseaudio
 
 format-volume = <ramp-volume> <label-volume>
 label-volume = %percentage:3%%
@@ -149,7 +147,7 @@ ramp-capacity-foreground = ${colors.foreground}
 [module/updates]
 type = custom/script
 exec = $HOME/bin/updates.sh
-interval = 1000
+interval = 60
 
 [settings]
 screenchange-reload = true
