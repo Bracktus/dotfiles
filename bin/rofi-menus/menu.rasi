@@ -1,0 +1,91 @@
+@import "~/.config/cols/colours.rasi"
+
+*{
+   font: "iosevka medium 14";
+}
+
+#window {
+    orientation: horizontal;
+    border: 5px;
+    border-color: @color10;
+    hide-scrollbar: true;
+    width: 46%;
+}
+
+#mainbox {
+	background-color: @color14;
+	padding: 40px;
+	marker-start: 40px;
+}
+
+#inputbar {
+    children: [ prompt,textbox-prompt-colon,entry,case-indicator ];
+}
+
+#inputbar {
+	background-color: @color14;
+	border: 0 0 0 5px;
+	margin: 5px 0 30px;
+	border-color: @color9;
+}
+
+#prompt{
+    margin: 5px;
+    background-color: @color14;
+}
+
+#textbox-prompt-colon {
+	font: "iosevka medium 14";
+	spacing: 0;
+    expand: false;
+    str: "";
+    background-color: @color14;
+    margin: 3px 0 1px 3px;
+    highlight: underline;
+}
+
+#entry{
+    enabled: false;
+}
+
+#case-indicator{
+	background-color: @color14;		
+}
+
+#listview {
+	background-color: @color14;
+	spacing: 10px;
+	lines: 8;
+}
+
+#element {
+	font: "Iosevka Nerd Font 14";
+	padding: 10px 0 10px 10px;
+	text-color: @color0;
+}
+
+#element.normal.normal {
+    background-color: @color14;
+}
+
+#element.normal.active {
+    background-color: @color11;
+}
+
+#element.selected.normal {
+    background-color: @color11; 
+}
+
+#element.selected.active {
+    background-color: @color14;
+}
+
+#element alternate.normal {
+	background-color: @color14;
+}
+
+#element alternate.active {
+	background-color: @color11;
+}
+
+
