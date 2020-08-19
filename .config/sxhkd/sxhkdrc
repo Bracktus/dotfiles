@@ -32,11 +32,16 @@ XF86AudioMicMute
     pactl set-source-mute 1 toggle 
 
 super + p ; {Left,Up,Right}
-	playerctl {previous,play-pause,next}
+    playerctl --player=%any,chromium {previous,play-pause,next}
 
 # screenshot
 Print
     "$HOME"/bin/rofi-menus/scrot/scrot-menu.sh
+
+# power
+ctrl + alt + Delete
+    "$HOME"/bin/rofi-menus/power/power-menu.sh
+
 #
 # bspwm hotkeys
 #
@@ -69,9 +74,9 @@ super + {t,shift + t,s,f}
 super + ctrl + {m,x,z}
 	bspc node -g {marked,locked,private}
 
-# toggle sticky node
+# toggle sticky private node
 super + o
-    bspc node -g sticky
+    bspc node -g sticky private
 #
 # focus/swap
 #

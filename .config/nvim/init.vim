@@ -27,6 +27,8 @@ noremap J }
 noremap K {
 nnoremap Y y$
 nnoremap ? :noh <CR>
+nnoremap s :setlocal spell spelllang=en_gb <CR>
+nnoremap S :set nospell <CR>
 nnoremap <Tab>   >>
 nnoremap <S-Tab> <<
 vnoremap <Tab>   >><Esc>gv

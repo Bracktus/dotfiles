@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rofi_command="rofi -theme $HOME/bin/rofi-menus/scrot/scrot-menu.rasi -dmenu"
+rofi_command="rofi -theme $HOME/bin/rofi-menus/menu.rasi -dmenu"
 
 ### Options ###
 screenClip="   Entire Screen (Save to clipboard)"
@@ -44,6 +44,7 @@ case $chosen in
         notify-send -i "~/pics/misc/cheese.png" "Cheese!" "Saved to clipboard"
         ;;  
     $areaFile)
+        sleep 0.2
         scrot -s $HOME/'pics/screenshots/%Y-%m-%d_%H%M%S.png'
         notify-send -i "~/pics/misc/cheese.png" "Cheese!" "Saved to ~/pics/screenshots"
         ;;

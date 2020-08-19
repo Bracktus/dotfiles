@@ -1,13 +1,35 @@
 #!/bin/bash
 
-rofi_command="rofi -theme $HOME/bin/rofi-menus/scrot/scrot-menu.rasi -dmenu"
+rofi_command="rofi -theme $HOME/bin/rofi-menus/menu.rasi -dmenu"
 
 ### Options ###
+shut="Shutdown "
+res="Restart ﰇ"
+spd="Suspend 鈴"
+hib="Hibernate "
+log="Logout "
 
 # Shutdown,reboot, lock?, suspend, hibernate
-options="$shutdown\n$reboot\n$suspend\n$hibernate\n$logout"
+options="$shut\n$res\n$spd\n$hib\n$log"
 
-chosen="$(echo -e "$options" | $rofi_command -p "" -i)"
+chosen="$(echo -e "$options" | $rofi_command -p "Power" -i)"
 case $chosen in
-    $shutdown)
+    $shut)
         shutdown now
+        ;;
+    $res)
+        reboot
+        ;;
+    $spd)
+        systemctl suspend
+        ;;
+    $hib)
+        systemctl hibernate
+        ;;
+    $log)
+        bspc quit
+        ;;
+    *)
+        notify-send "No selection"
+        ;;
+esac
