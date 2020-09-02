@@ -3,7 +3,6 @@ sys.path.insert(1, '/home/bracktus/.config/cols/')
 import colours
 
 c.scrolling.smooth = True
-c.url.searchengines = {"DEFAULT": "https://www.google.com/search?q={}"}
 
 # Downloads
 c.downloads.location.remember = True
@@ -13,6 +12,7 @@ c.downloads.location.prompt = False
 
 # Bindings
 config.bind('d', 'repeat 3 scroll down')
+config.bind('D', "nop")
 config.bind('u', 'repeat 3 scroll up')
 config.bind('x', 'tab-close')
 config.bind('X', 'undo')
@@ -24,6 +24,7 @@ config.bind('M', 'hint links spawn -d mpv --force-window=immediate {hint-url}')
 config.bind('.', 'set-cmd-text :open {url:pretty}')
 config.bind('gw', 'tab-give')
 config.bind('gW', 'tab-give 0 ;; close')
+
 
 #Appearance Misc
 c.statusbar.widgets = ["keypress", "url", "progress"]

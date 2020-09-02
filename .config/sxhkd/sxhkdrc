@@ -3,7 +3,7 @@
 #
 
 # terminal emulator
-ctrl + alt + i
+ctrl + alt + @i
     termite
 
 # program launcher

@@ -3,12 +3,12 @@
 rofi_command="rofi -theme $HOME/bin/rofi-menus/menu.rasi -dmenu"
 
 ### Options ###
-screenClip="   Entire Screen (Save to clipboard)"
-areaClip=" 麗  Select Area (Save to clipboard)"
-windowClip="   Current Window (Save to clipboard)"
+screenClip="   Screen (Save to clipboard)"
+areaClip=" 麗  Area (Save to clipboard)"
+windowClip="   Window (Save to clipboard)"
 screenFile="   Screen (Save to file)"
-areaFile=" 麗  Entire Area (Save to file)"
-windowFile="   Current Window (Save to file)"
+areaFile=" 麗  Area (Save to file)"
+windowFile="   Window (Save to file)"
 
 # Variable passed to rofi
 options="$screenClip\n$screenFile\n$windowClip\n$windowFile\n$areaClip\n$areaFile"
