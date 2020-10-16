@@ -3,6 +3,7 @@ sys.path.insert(1, '/home/bracktus/.config/cols/')
 import colours
 
 c.scrolling.smooth = True
+c.hints.leave_on_load = False
 
 # Downloads
 c.downloads.location.remember = True
@@ -20,11 +21,12 @@ config.bind('<Alt+Tab>', 'tab-next')
 config.bind('K', 'tab-next')
 config.bind('J', 'tab-prev')
 config.bind('yt', 'tab-clone')
-config.bind('M', 'hint links spawn -d mpv --force-window=immediate {hint-url}')
 config.bind('.', 'set-cmd-text :open {url:pretty}')
 config.bind('gw', 'tab-give')
 config.bind('gW', 'tab-give 0 ;; close')
-
+config.bind(',m', 'hint links spawn -d mpv --force-window=immediate {hint-url}')
+config.bind(',d', 'hint links spawn youtube-dl -iw {hint-url}') 
+config.bind('yl', 'hint links yank')
 
 #Appearance Misc
 c.statusbar.widgets = ["keypress", "url", "progress"]

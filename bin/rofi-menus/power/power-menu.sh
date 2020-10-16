@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rofi_command="rofi -theme $HOME/bin/rofi-menus/menu.rasi -dmenu"
+rofi_command="rofi -theme $XDG_CONFIG_HOME/rofi/menu.rasi -dmenu"
 
 ### Options ###
 shut="Shutdown "

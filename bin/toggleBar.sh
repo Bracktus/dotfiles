@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 TMP_FILE=/tmp/bar_toggle
 
 is_shown(){

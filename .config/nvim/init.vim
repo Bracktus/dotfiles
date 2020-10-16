@@ -2,9 +2,30 @@
 set number
 set showcmd
 set wildmenu
+set clipboard+=unnamedplus
+set ttimeoutlen=10
 hi MatchParen cterm=none ctermbg=magenta ctermfg=yellow
 
 
+" searching
+set ignorecase
+set incsearch
+set hlsearch
+
+" Restore cursor shape to beam on exit
+augroup restore_cursor_shape
+  autocmd!
+  au VimLeave * set guicursor=a:ver10-blinkoff0
+augroup END
+
+" Relative line numbers
+set number relativenumber
+
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 
 " Tabs and spaces
 set tabstop=4
@@ -26,6 +47,7 @@ noremap H ^
 noremap L $
 noremap J }
 noremap K {
+nnoremap Q @
 nnoremap Y y$
 nnoremap ? :noh <CR>
 nnoremap s :setlocal spell spelllang=en_gb <CR>
@@ -34,16 +56,6 @@ nnoremap <Tab>   >>
 nnoremap <S-Tab> <<
 vnoremap <Tab>   >><Esc>gv
 vnoremap <S-Tab> <<<Esc>gv
-
-let g:jedi#goto_command = "gd"
-let g:jedi#documentation_command = "<leader>d"
-let g:jedi#rename_command = "<leader>r"
-
-" Restore cursor shape to beam on exit
-augroup restore_cursor_shape
-  autocmd!
-  au VimLeave * set guicursor=a:ver10-blinkoff0
-augroup END
 
 " typos
 cmap W w
@@ -62,11 +74,6 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " autocomplete
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#jedi#show_docstring = 1
-let g:jedi#completions_enabled = 0
-autocmd FileType python setlocal completeopt-=preview
-
-
 
 "syntastic
 set statusline+=%#warningmsg#
@@ -85,9 +92,10 @@ call plug#begin()
 Plug 'preservim/nerdtree'
 Plug 'preservim/nerdcommenter'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'deoplete-plugins/deoplete-jedi'
-Plug 'davidhalter/jedi-vim'
+"Plug 'deoplete-plugins/deoplete-jedi'
+"Plug 'davidhalter/jedi-vim'
 Plug 'tmsvg/pear-tree'
 Plug 'vim-syntastic/syntastic'
+Plug 'JuliaEditorSupport/julia-vim'
 call plug#end()
 

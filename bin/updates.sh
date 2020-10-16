@@ -1,7 +1,7 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
+updates=$(checkupdates+aur 2> /dev/null | wc -l)
 
-updates=$(checkupdates+aur | wc -l)
 if [ $updates -gt 0 ]; then
     echo " $updates"
 else
