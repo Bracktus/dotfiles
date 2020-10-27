@@ -5,7 +5,10 @@ killall -q polybar
 
 # Launch bar
 echo "---" | tee -a /tmp/polybar1.log 
-polybar main >>/tmp/polybar1.log 2>&1 &
+echo "---" | tee -a /tmp/polybar2.log 
+
 # Bar toggleFlag
 echo "shown" | tee /tmp/bar_toggle
+polybar main >>/tmp/polybar1.log 2>&1 &
+polybar secondary >>/tmp/polybar2.log 2>&1 &
 echo "Bars launched..."

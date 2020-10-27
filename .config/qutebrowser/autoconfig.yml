@@ -6,5 +6,7 @@
 
 config_version: 2
 settings:
-  content.desktop_capture:
-    https://discord.com: true
+  content.media.audio_capture:
+    https://teams.microsoft.com: true
+  content.media.audio_video_capture:
+    https://teams.microsoft.com: true

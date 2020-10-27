@@ -6,7 +6,6 @@ set clipboard+=unnamedplus
 set ttimeoutlen=10
 hi MatchParen cterm=none ctermbg=magenta ctermfg=yellow
 
-
 " searching
 set ignorecase
 set incsearch
@@ -18,15 +17,6 @@ augroup restore_cursor_shape
   au VimLeave * set guicursor=a:ver10-blinkoff0
 augroup END
 
-" Relative line numbers
-set number relativenumber
-
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
-
 " Tabs and spaces
 set tabstop=4
 set softtabstop=4
@@ -34,11 +24,6 @@ set expandtab
 set shiftwidth=4
 set smarttab
 
-" move by screen line instead of file line
-nnoremap j gj
-nnoremap <down> gj
-nnoremap k gk
-nnoremap <up> gk
 
 " my keybinds
 map <Space> \
@@ -47,15 +32,28 @@ noremap H ^
 noremap L $
 noremap J }
 noremap K {
-nnoremap Q @
 nnoremap Y y$
 nnoremap ? :noh <CR>
-nnoremap s :setlocal spell spelllang=en_gb <CR>
-nnoremap S :set nospell <CR>
+inoremap <C-Space> <ESC>
+
+" move by screen line instead of file line
+nnoremap j gj
+nnoremap <down> gj
+nnoremap k gk
+nnoremap <up> gk
+
+" indentation
 nnoremap <Tab>   >>
 nnoremap <S-Tab> <<
 vnoremap <Tab>   >><Esc>gv
 vnoremap <S-Tab> <<<Esc>gv
+
+" spelling
+nnoremap s :setlocal spell spelllang=en_gb <CR>
+nnoremap S :set nospell <CR>
+
+"preview markdown
+nnoremap <leader>p :w <bar> ! pandoc -f markdown -t pdf % \| zathura -<CR>
 
 " typos
 cmap W w
