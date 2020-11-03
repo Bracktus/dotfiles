@@ -18,15 +18,22 @@ super + Escape
 super + b
     toggleBar.sh toggle
 
-# audio keys
+# brightness
+XF86MonBrightnessUp
+    light -A 1
+
+XF86MonBrightnessDown
+    light -U 1
+
+# audio 
 XF86AudioLowerVolume
-    pactl set-sink-volume 0 -2%
+    "$HOME"/bin/volume.sh down
 
 XF86AudioRaiseVolume
-	pactl set-sink-volume 0 +2%
+    "$HOME"/bin/volume.sh up
 
 XF86AudioMute
-	pactl set-sink-mute 0 toggle
+    "$HOME"/bin/volume.sh mute
 
 XF86AudioMicMute
     pactl set-source-mute 1 toggle 
@@ -42,13 +49,13 @@ Print
 ctrl + alt + Delete
     "$HOME"/bin/rofi-menus/power/power-menu.sh
 
-# misc
-XF86Tools
-    termite -e "nvim $HOME/docs/usefulCommands.txt"
-
+#password manager
 XF86Favorites
     rofi-pass
-#
+
+#XF86Bluetooth
+
+
 # bspwm hotkeys
 #
 
