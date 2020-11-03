@@ -17,15 +17,13 @@ fi
 
 if [[ "$(tty)" == "/dev/tty1" ]]
  then
-     echo "Power:"
+     echo -n "Power: "
      cat /sys/class/power_supply/BAT0/capacity
 fi
 
 # adding PATH variables
 export PATH="$HOME/bin:$PATH"
-export PATH="$HOME/bin/bspwm:$PATH"
 export PATH="$HOME/bracktus/.local.bin:$PATH"
-export PATH="$HOME/.config/gems/bin:$PATH"
 
 
 #XDG Base directories
@@ -37,9 +35,9 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export MYSQL_HISTFILE="$XDG_DATA_HOME/mysql_history"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export ATOM_HOME="$XDG_DATA_HOME/atom"
-export GEM_HOME="$HOME/.config/gems"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export LESSHISTFILE=-
+export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 
 # My Env Vars
 export EDITOR="nvim"

@@ -2,8 +2,8 @@
 set number
 set showcmd
 set wildmenu
-set clipboard+=unnamedplus
 set ttimeoutlen=10
+set clipboard+=unnamedplus
 hi MatchParen cterm=none ctermbg=magenta ctermfg=yellow
 
 " searching
