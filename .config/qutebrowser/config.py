@@ -26,6 +26,7 @@ config.bind('gw', 'tab-give')
 config.bind('gW', 'tab-give 0 ;; close')
 config.bind(',m', 'hint links spawn -d mpv --force-window=immediate {hint-url}')
 config.bind(',d', 'hint links spawn youtube-dl -o ~/vids/%(title)s.%(ext)s -i --all-subs {hint-url} ') 
+config.bind(',,', 'spawn -d mpv --force-window=immediate {url}')
 config.bind('yl', 'hint links yank')
 
 #Appearance Misc

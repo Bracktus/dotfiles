@@ -26,14 +26,8 @@ XF86MonBrightnessDown
     light -U 1
 
 # audio 
-XF86AudioLowerVolume
-    "$HOME"/bin/volume.sh down
-
-XF86AudioRaiseVolume
-    "$HOME"/bin/volume.sh up
-
-XF86AudioMute
-    "$HOME"/bin/volume.sh mute
+XF86Audio{LowerVolume,RaiseVolume,Mute}
+    "$HOME"/bin/volume.sh {down,up,mute}
 
 XF86AudioMicMute
     pactl set-source-mute 1 toggle 
@@ -49,19 +43,12 @@ Print
 ctrl + alt + Delete
     "$HOME"/bin/rofi-menus/power/power-menu.sh
 
-#password manager
+# password manager
 XF86Favorites
     rofi-pass
-
-#XF86Bluetooth
-
-
+#
 # bspwm hotkeys
 #
-
-# quit bspwm
-ctrl + alt + q
-	bspc quit
 
 # restart sxhkd
 ctrl + alt + r
@@ -75,9 +62,11 @@ super + {_,shift + }w
 super + m
 	bspc desktop -l next
 
-# changin windows in monocle mode
+# changing gaps 
 super + bracket{left,right}
     bspc node -f {prev, next}.local
+
+# changing gaps
 
 #
 # state/flags
@@ -106,10 +95,6 @@ super + {_,shift + }{h,j,k,l}
 super + {_,shift + }c
 	bspc node -f {next,prev}.local
 
-# focus the next/previous desktop in the current monitor
-super + bracket{left,right}
-	bspc desktop -f {prev,next}.local
-
 # focus the next occupied desktop
 super + Tab
 	bspc desktop -f next.occupied.local
@@ -134,9 +119,9 @@ super + ctrl + {h,j,k,l}
 super + ctrl + {1-9}
 	bspc node -o 0.{1-9}
 
-# cancel the preselection for the focused node
+# cancel the preselection for the focused desktop
 super + ctrl + space
-	bspc node -p cancel
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
 #
 # move floating windows and resizing windows
