@@ -19,11 +19,8 @@ super + b
     toggleBar.sh toggle
 
 # brightness
-XF86MonBrightnessUp
-    light -A 1
-
-XF86MonBrightnessDown
-    light -U 1
+XF86MonBrightness{Up,Down}
+    light -{A,U} 1
 
 # audio 
 XF86Audio{LowerVolume,RaiseVolume,Mute}
@@ -61,12 +58,6 @@ super + {_,shift + }w
 # alternate between the tiled and monocle layout
 super + m
 	bspc desktop -l next
-
-# changing gaps 
-super + bracket{left,right}
-    bspc node -f {prev, next}.local
-
-# changing gaps
 
 #
 # state/flags
@@ -107,6 +98,8 @@ super + {_,shift + }{1-9,0}
 super + Return
 	bspc node -n 'last.!automatic.local'
 
+super + bracket{left,right}
+    bspc node @/ -C {backward,forward}
 #
 # preselect
 #
