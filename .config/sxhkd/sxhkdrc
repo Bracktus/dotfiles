@@ -43,6 +43,12 @@ ctrl + alt + Delete
 # password manager
 XF86Favorites
     rofi-pass
+
+# opening PDFs
+super + n
+    "$HOME"/bin/rofi-menus/pdf.sh
+
+# 
 #
 # bspwm hotkeys
 #

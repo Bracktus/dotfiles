@@ -24,7 +24,6 @@ fi
 export PS1="\[\e[35m\]\w \[\e[m\]"
 
 eval "$(pandoc --bash-completion)"
-neofetch
 exec fish
 
 
