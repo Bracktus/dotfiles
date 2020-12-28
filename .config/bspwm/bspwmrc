@@ -25,12 +25,13 @@ bspc rule -a Zathura state=tiled
 # Autostart----------------------------------
 
 #Kill if already running 
-killall -9 sxhkd dunst picom
+killall -9 sxhkd dunst picom redshift 
 pkill -f music-notification.py
 
 #Launching daemons
 sxhkd &
 dunst &
+redshift &
 picom -b 
 python3 ~/bin/music-notification.py &
 

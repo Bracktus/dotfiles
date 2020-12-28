@@ -46,9 +46,8 @@ XF86Favorites
 
 # opening PDFs
 super + n
-    "$HOME"/bin/rofi-menus/pdf.sh
+    "$HOME"/bin/rofi-menus/docs.sh
 
-# 
 #
 # bspwm hotkeys
 #

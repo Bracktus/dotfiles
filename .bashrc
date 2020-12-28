@@ -21,10 +21,20 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# only runs on tty
+if [[ "$TERM" = "linux" ]]; then
+    echo " "
+    echo -n "Power @: "
+    cat /sys/class/power_supply/BAT0/capacity
+    echo " "
+    date +%c
+fi
 export PS1="\[\e[35m\]\w \[\e[m\]"
 
 eval "$(pandoc --bash-completion)"
+
 exec fish
+
 
 
 
