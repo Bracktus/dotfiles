@@ -1,10 +1,13 @@
- "mics
+"mics
 set number
 set showcmd
 set wildmenu
 set ttimeoutlen=10
 set clipboard+=unnamedplus
-hi MatchParen cterm=none ctermbg=magenta ctermfg=yellow
+colorscheme peachpuff
+autocmd ColorScheme *
+        \ highlight MatchParen cterm=none ctermbg=Red ctermfg=white |
+        \ highlight Visual cterm=none ctermbg=darkgrey ctermfg=LightRed
 
 " searching
 set ignorecase
@@ -18,12 +21,11 @@ augroup restore_cursor_shape
 augroup END
 
 " Tabs and spaces
+set expandtab
+set smarttab
 set tabstop=4
 set softtabstop=4
-set expandtab
 set shiftwidth=4
-set smarttab
-
 
 " my keybinds
 map <Space> \
@@ -53,7 +55,15 @@ nnoremap s :setlocal spell spelllang=en_gb <CR>
 nnoremap S :set nospell <CR>
 
 "preview markdown
-nnoremap <leader>p :w <bar> ! pandoc -f markdown -t pdf % \| zathura -<CR>
+nnoremap <leader>p :w <bar> ! pandoc -f markdown -t pdf -C % \| zathura -<CR>
+
+"open terminal in current directory
+nnoremap <leader>w :! termite . & disown<CR><CR>
+
+"buffers and tabs
+nnoremap <Leader>bb :buffers<CR>:buffer<Space>
+nnoremap <Leader>bv :buffers<CR>:vsp <bar> b <Space>
+nnoremap <Leader>bs :buffers<CR>:sp <bar> b <Space>
 
 " typos
 cmap W w
@@ -72,6 +82,11 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " autocomplete
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#jedi#enable_typeinfo = 0 
+let g:deoplete#sources#jedi#enable_typeinfo = 0 
+let g:deoplete#sources#jedi#show_docstring = 0
+let g:jedi#documentation_command = ""
+let g:jedi#show_call_signatures = 0
 
 "syntastic
 set statusline+=%#warningmsg#
@@ -90,10 +105,13 @@ call plug#begin()
 Plug 'preservim/nerdtree'
 Plug 'preservim/nerdcommenter'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"Plug 'deoplete-plugins/deoplete-jedi'
-"Plug 'davidhalter/jedi-vim'
+Plug 'deoplete-plugins/deoplete-jedi'
+Plug 'davidhalter/jedi-vim'
 Plug 'tmsvg/pear-tree'
 Plug 'vim-syntastic/syntastic'
 Plug 'JuliaEditorSupport/julia-vim'
 call plug#end()
+
+"Plug 'vim-pandoc/vim-pandoc'
+"Plug 'vim-pandoc/vim-pandoc-syntax'
 

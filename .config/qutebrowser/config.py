@@ -2,6 +2,8 @@ import sys
 sys.path.insert(1, '/home/bracktus/.config/cols/')
 import colours
 
+config.load_autoconfig(False)
+
 c.scrolling.smooth = True
 c.hints.leave_on_load = False
 
