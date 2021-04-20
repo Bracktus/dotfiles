@@ -41,4 +41,4 @@ export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 
 # My Env Vars
 export EDITOR="nvim"
-export BAT_THEME="ansi-dark"
+export BAT_THEME="ansi"

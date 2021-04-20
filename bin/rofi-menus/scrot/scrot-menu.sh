@@ -14,35 +14,35 @@ windowFile="   Window (Save to file)"
 options="$screenClip\n$screenFile\n$windowClip\n$windowFile\n$areaClip\n$areaFile"
 
 chosen="$(echo -e "$options" | $rofi_command -p "Screenshot" -i)"
-case $chosen in
-    $screenClip)
+case "$chosen" in
+    "$screenClip")
         sleep 0.2 
         maim | xclip -selection clipboard -t image/png
-        notify-send -i "~/pics/misc/cheese.png" "Cheese!" "Saved to clipboard"
+        notify-send -i "$HOME/pics/misc/cheese.png" "Cheese!" "Saved to clipboard"
         ;;
-    $screenFile)
+    "$screenFile")
         sleep 0.2 
-        maim ~/pics/screenshots/$(date +%Y-%m-%d_%H%M%S).png
-        notify-send -i "~/pics/misc/cheese.png" "Cheese!" "Saved to ~/pics/screenshots"
+        maim ~/pics/screenshots/"$(date +%Y-%m-%d_%H%M%S)".png
+        notify-send -i "$HOME/pics/misc/cheese.png" "Cheese!" "Saved to ~/pics/screenshots"
         ;;
-    $windowClip)
+    "$windowClip")
         sleep 0.2  
-        maim -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
-        notify-send -i "~/pics/misc/cheese.png" "Cheese!" "Saved to clipboard"
+        maim -i "$(xdotool getactivewindow)" | xclip -selection clipboard -t image/png
+        notify-send -i "$HOME/pics/misc/cheese.png" "Cheese!" "Saved to clipboard"
         ;;
-    $windowFile)
+    "$windowFile")
         sleep 0.2
-        maim -i $(xdotool getactivewindow) ~/pics/screenshots/$(date +%Y-%m-%d_%H%M%S).png
-        notify-send -i "~/pics/misc/cheese.png" "Cheese!" "Saved to ~/pics/screenshots"
+        maim -i "$(xdotool getactivewindow)" ~/pics/screenshots/"$(date +%Y-%m-%d_%H%M%S)".png
+        notify-send -i "$HOME/pics/misc/cheese.png" "Cheese!" "Saved to ~/pics/screenshots"
         ;;
-    $areaClip)
+    "$areaClip")
         sleep 0.2 
         maim -s | xclip -selection clipboard -t image/png
-        notify-send -i "~/pics/misc/cheese.png" "Cheese!" "Saved to clipboard"
+        notify-send -i "$HOME/pics/misc/cheese.png" "Cheese!" "Saved to clipboard"
         ;;  
-    $areaFile)
+    "$areaFile")
         sleep 0.2
-        maim -s ~/pics/screenshots/$(date +%Y-%m-%d_%H%M%S).png
-        notify-send -i "~/pics/misc/cheese.png" "Cheese!" "Saved to ~/pics/screenshots"
+        maim -s ~/pics/screenshots/"$(date +%Y-%m-%d_%H%M%S)".png
+        notify-send -i "$HOME/pics/misc/cheese.png" "Cheese!" "Saved to ~/pics/screenshots"
         ;;
 esac

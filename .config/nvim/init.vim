@@ -1,13 +1,17 @@
-"mics
+"mics 
 set number
 set showcmd
 set wildmenu
 set ttimeoutlen=10
 set clipboard+=unnamedplus
+set confirm
 colorscheme peachpuff
 autocmd ColorScheme *
-        \ highlight MatchParen cterm=none ctermbg=Red ctermfg=white |
-        \ highlight Visual cterm=none ctermbg=darkgrey ctermfg=LightRed
+        \ highlight MatchParen  cterm=none ctermfg=white ctermbg=darkgrey|
+        \ highlight Visual      cterm=none ctermfg=Black ctermbg=Green |
+        \ highlight SpellBad    cterm=underline ctermfg=Red ctermbg=Black|
+        \ highlight SpellCap    cterm=underline ctermfg=DarkRed ctermbg=Black |
+        \ highlight Search      cterm=none ctermfg=Black ctermbg=Magenta 
 
 " searching
 set ignorecase
@@ -35,8 +39,12 @@ noremap L $
 noremap J }
 noremap K {
 nnoremap Y y$
-nnoremap ? :noh <CR>
+nnoremap <C-l> :noh <CR>
 inoremap <C-Space> <ESC>
+
+"fzf
+nnoremap <leader>ff :FZF! <CR>
+nnoremap <leader>fh :FZF! ~ <CR>
 
 " move by screen line instead of file line
 nnoremap j gj
@@ -54,16 +62,30 @@ vnoremap <S-Tab> <<<Esc>gv
 nnoremap s :setlocal spell spelllang=en_gb <CR>
 nnoremap S :set nospell <CR>
 
-"preview markdown
+" preview markdown
 nnoremap <leader>p :w <bar> ! pandoc -f markdown -t pdf -C % \| zathura -<CR>
 
-"open terminal in current directory
+" open terminal in current directory
 nnoremap <leader>w :! termite . & disown<CR><CR>
 
-"buffers and tabs
+" buffers 
 nnoremap <Leader>bb :buffers<CR>:buffer<Space>
 nnoremap <Leader>bv :buffers<CR>:vsp <bar> b <Space>
 nnoremap <Leader>bs :buffers<CR>:sp <bar> b <Space>
+nnoremap <leader>bd :buffers<CR>:bdelete <Space>
+
+" tabs
+nnoremap <leader>n :tabe 
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+nnoremap <leader>6 6gt
+nnoremap <leader>7 7gt
+nnoremap <leader>8 8gt
+nnoremap <leader>9 9gt
+nnoremap <leader>0 :tablast<cr>
 
 " typos
 cmap W w
@@ -73,12 +95,9 @@ cmap Q q
 
 "PACKAGE BINDS AND SETTINGS
 
-"nerdstuff
+"mics
 filetype plugin on
-map <C-o> :NERDTreeToggle<CR>
-nnoremap <leader>c :call NERDComment(0,"toggle")<CR>
-vnoremap <leader>c :call NERDComment(0,"toggle")<CR>
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+nnoremap <leader>l :Align
 
 " autocomplete
 let g:deoplete#enable_at_startup = 1
@@ -87,6 +106,7 @@ let g:deoplete#sources#jedi#enable_typeinfo = 0
 let g:deoplete#sources#jedi#show_docstring = 0
 let g:jedi#documentation_command = ""
 let g:jedi#show_call_signatures = 0
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 "syntastic
 set statusline+=%#warningmsg#
@@ -103,15 +123,15 @@ let g:python3_host_prog = "/home/bracktus/.config/nvim/nvimVenv/bin/python"
 
 call plug#begin()
 Plug 'preservim/nerdtree'
-Plug 'preservim/nerdcommenter'
+Plug 'vim-scripts/Align'
+Plug 'tpope/vim-commentary'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'davidhalter/jedi-vim'
 Plug 'tmsvg/pear-tree'
 Plug 'vim-syntastic/syntastic'
 Plug 'JuliaEditorSupport/julia-vim'
+Plug 'dag/vim-fish'
 call plug#end()
 
-"Plug 'vim-pandoc/vim-pandoc'
-"Plug 'vim-pandoc/vim-pandoc-syntax'
 

@@ -30,6 +30,8 @@ config.bind(',m', 'hint links spawn -d mpv --force-window=immediate {hint-url}')
 config.bind(',d', 'hint links spawn youtube-dl -o ~/vids/%(title)s.%(ext)s -i --all-subs {hint-url} ') 
 config.bind(',,', 'spawn -d mpv --force-window=immediate {url}')
 config.bind('yl', 'hint links yank')
+config.bind('pP', 'open -- {clipboard}')
+config.bind('PP', 'open -t -- {clipboard}')
 
 #Appearance Misc
 c.statusbar.widgets = ["keypress", "url", "progress"]

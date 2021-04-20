@@ -15,22 +15,22 @@ options="$shut\n$res\n$spd\n$hib\n$log\n$lock"
 
 chosen="$(echo -e "$options" | $rofi_command -p "Power" -i)"
 case $chosen in
-    $shut)
+    "$shut")
         shutdown now
         ;;
-    $res)
+    "$res")
         reboot
         ;;
-    $spd)
+    "$spd")
         systemctl suspend
         ;;
-    $hib)
+    "$hib")
         systemctl hibernate
         ;;
-    $log)
+    "$log")
         bspc quit
         ;;
-    $lock)
+    "$lock")
         i3lock -i ~/pics/misc/shinji.png
         ;;
     *)
