@@ -66,7 +66,7 @@ nnoremap S :set nospell <CR>
 nnoremap <leader>p :w <bar> ! pandoc -f markdown -t pdf -C % \| zathura -<CR>
 
 " open terminal in current directory
-nnoremap <leader>w :! termite . & disown<CR><CR>
+nnoremap <leader>w :! alacritty --working-directory ./ & disown<CR><CR>
 
 " buffers 
 nnoremap <Leader>bb :buffers<CR>:buffer<Space>
@@ -93,6 +93,30 @@ cmap Wq wq
 cmap WQ wq
 cmap Q q
 
+function! MathAndLiquid()
+    "" Define certain regions
+    " Block math. Look for "$$[anything]$$"
+    syn region math start=/\$\$/ end=/\$\$/
+    " inline math. Look for "$[not $][anything]$"
+    syn match math_block '\$[^$].\{-}\$'
+
+    " Liquid single line. Look for "{%[anything]%}"
+    syn match liquid '{%.*%}'
+    " Liquid multiline. Look for "{%[anything]%}[anything]{%[anything]%}"
+    syn region highlight_block start='{% highlight .*%}' end='{%.*%}'
+    " Fenced code blocks, used in GitHub Flavored Markdown (GFM)
+    syn region highlight_block start='```' end='```'
+
+    "" Actually highlight those regions.
+    hi link math Statement
+    hi link liquid Statement
+    hi link highlight_block Function
+    hi link math_block Function
+endfunction
+
+" Call everytime we open a Markdown file
+autocmd BufRead,BufNewFile,BufEnter *.md,*.markdown call MathAndLiquid()
+
 "PACKAGE BINDS AND SETTINGS
 
 "mics
@@ -118,6 +142,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+
 " nvim's personal venv
 let g:python3_host_prog = "/home/bracktus/.config/nvim/nvimVenv/bin/python"
 
@@ -132,6 +157,7 @@ Plug 'tmsvg/pear-tree'
 Plug 'vim-syntastic/syntastic'
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'dag/vim-fish'
+Plug 'ap/vim-css-color'
 call plug#end()
 
 

@@ -4,7 +4,7 @@
 
 # terminal emulator
 ctrl + alt + @i
-    termite
+    alacritty
 
 # program launcher
 super + @space
@@ -20,7 +20,7 @@ super + b
 
 # brightness
 XF86MonBrightness{Up,Down}
-    light -{A,U} 1
+    "$HOME"/bin/brightness.sh {up,down}
 
 # audio 
 XF86Audio{LowerVolume,RaiseVolume,Mute}
@@ -32,6 +32,10 @@ XF86AudioMicMute
 super + p ; {Left,Up,Right}
     playerctl --player=%any,chromium {previous,play-pause,next}
 
+# review notification history
+super + p ; Down
+    dunstctl history-pop
+
 # screenshot
 Print
     "$HOME"/bin/rofi-menus/scrot/scrot-menu.sh
@@ -39,6 +43,10 @@ Print
 # power
 ctrl + alt + Delete
     "$HOME"/bin/rofi-menus/power/power-menu.sh
+
+# emojis
+super + semicolon
+    rofi -show emoji -theme ~/.config/rofi/emoji-search.rasi -modi emoji
 
 # password manager
 XF86Favorites
