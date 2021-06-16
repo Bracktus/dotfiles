@@ -32,11 +32,12 @@ for media in mediaList:
                 output = genOutput(nameOfTheShow, episode, niceTime)
                 listOfAnime.append(output)
 
-insertionSort(listOfAnime)
+if len(listOfAnime) != 0:
+    insertionSort(listOfAnime)
 
-max = len(listOfAnime[-1])
-for anime in listOfAnime:
-        print(anime)
+    max = len(listOfAnime[-1])
+    for anime in listOfAnime:
+            print(anime)
 
 
 
