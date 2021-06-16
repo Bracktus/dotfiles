@@ -3,15 +3,24 @@ set number
 set showcmd
 set wildmenu
 set ttimeoutlen=10
+set laststatus=2
+set statusline=%F\  "Filename
+set statusline+=[%c,%l] "[Column,Row]
+
 set clipboard+=unnamedplus
 set confirm
 colorscheme peachpuff
+
 autocmd ColorScheme *
-        \ highlight MatchParen  cterm=none ctermfg=white ctermbg=darkgrey|
-        \ highlight Visual      cterm=none ctermfg=Black ctermbg=Green |
-        \ highlight SpellBad    cterm=underline ctermfg=Red ctermbg=Black|
-        \ highlight SpellCap    cterm=underline ctermfg=DarkRed ctermbg=Black |
-        \ highlight Search      cterm=none ctermfg=Black ctermbg=Magenta 
+        \ highlight MatchParen  cterm=none      ctermfg=White   ctermbg=DarkGrey   |
+        \ highlight Visual      cterm=none      ctermfg=Black   ctermbg=Green      |
+        \ highlight SpellBad    cterm=underline ctermfg=Red     ctermbg=Black      |
+        \ highlight SpellCap    cterm=underline ctermfg=DarkRed ctermbg=Black      |
+        \ highlight Search      cterm=none      ctermfg=Black   ctermbg=Magenta    |
+        \ highlight DiffAdd     cterm=none      ctermfg=Black   ctermbg=DarkGreen  |
+        \ highlight DiffChange  cterm=italic    ctermfg=Black   ctermbg=DarkBlue   |
+        \ highlight DiffDelete  cterm=bold      ctermfg=Black   ctermbg=Red        |
+        \ highlight DiffText    cterm=italic    ctermfg=Black   ctermbg=Blue
 
 " searching
 set ignorecase
@@ -41,6 +50,7 @@ noremap K {
 nnoremap Y y$
 nnoremap <C-l> :noh <CR>
 inoremap <C-Space> <ESC>
+vnoremap p pgvy
 
 "fzf
 nnoremap <leader>ff :FZF! <CR>
@@ -65,8 +75,10 @@ nnoremap S :set nospell <CR>
 " preview markdown
 nnoremap <leader>p :w <bar> ! pandoc -f markdown -t pdf -C % \| zathura -<CR>
 
-" open terminal in current directory
+" terminal stuff
 nnoremap <leader>w :! alacritty --working-directory ./ & disown<CR><CR>
+tnoremap <Esc> <C-\><C-n>
+
 
 " buffers 
 nnoremap <Leader>bb :buffers<CR>:buffer<Space>
@@ -122,6 +134,7 @@ autocmd BufRead,BufNewFile,BufEnter *.md,*.markdown call MathAndLiquid()
 "mics
 filetype plugin on
 nnoremap <leader>l :Align
+vnoremap <leader>l :Align
 
 " autocomplete
 let g:deoplete#enable_at_startup = 1
@@ -141,13 +154,14 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-
+let g:syntastic_enable_racket_racket_checker = 1
+let g:syntastic_racket_racket_args="--load"
+let g:syntastic_racket_checkers = ['racket']
 
 " nvim's personal venv
 let g:python3_host_prog = "/home/bracktus/.config/nvim/nvimVenv/bin/python"
 
 call plug#begin()
-Plug 'preservim/nerdtree'
 Plug 'vim-scripts/Align'
 Plug 'tpope/vim-commentary'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -159,5 +173,3 @@ Plug 'JuliaEditorSupport/julia-vim'
 Plug 'dag/vim-fish'
 Plug 'ap/vim-css-color'
 call plug#end()
-
-

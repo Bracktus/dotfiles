@@ -6,7 +6,7 @@
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
     if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
+        . "$HOME/.bashrc"
     fi
 fi
 
@@ -42,3 +42,4 @@ export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 # My Env Vars
 export EDITOR="nvim"
 export BAT_THEME="ansi"
+export _JAVA_AWT_WM_NONREPARENTING=1

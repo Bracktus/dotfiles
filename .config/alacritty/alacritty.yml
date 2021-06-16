@@ -1,3 +1,6 @@
+import:
+    - ~/.config/cols/colours.yml
+
 env:
     TERM: alacritty
 
@@ -29,30 +32,6 @@ font:
       x: 0
       y: 0
 
-colors:
-    primary:
-        background: '#0C0D0C'
-        foreground: '#e2e1e1'
-    
-    normal:
-        black:   '#0C0D0C'
-        red:     '#e49b8f'
-        green:   '#bdcd9e'
-        yellow:  '#f4d6b0'
-        blue:    '#aabad0'
-        magenta: '#f4a598'
-        cyan:    '#b0ccd1'
-        white:   '#f8f5f5'
-
-    bright:
-        black:   '#A39D9D'
-        red:     '#efb3ab'
-        green:   '#b3bd9d'
-        yellow:  '#e7c547'
-        blue:    '#7aa6da'
-        magenta: '#ffa5a3'
-        cyan:    '#b0d1c8'
-        white:   '#e2e1e1'
 
 selection:
     semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
@@ -67,16 +46,19 @@ mouse:
 
   hide_when_typing: false
 
-  url:
-    launcher:
-        program: qutebrowser
-
 bell:
     animation: EaseOutExpo
     duration: 0 
 
 shell:
     program: /bin/fish
+
+hints:
+    regex: "^(http|https)://"
+    command: qutebrowser
+    mouse:
+        enabled: true
+            
 
 # Key bindings
 #

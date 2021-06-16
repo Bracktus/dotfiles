@@ -21,7 +21,8 @@ end
 set -l commands account cities connect countries disconnect groups login logout rate register set settings status whitelist help
 set -l countries (nordvpn-countries)
 # set -l cities (nordvpn-cities)
-set -l settings (nordvpn-settings)
+set -l settingOptions (nordvpn-settings)
+set -l settingKeywords set settings
 
 # nordvpn doesn't take in any files
 complete -c nordvpn -f
@@ -56,16 +57,17 @@ for country in $countries
 end
 
 # nordvpn settings
-complete -c nordvpn -n "__fish_seen_subcommand_from $settings and __fish_seen_subcommand_from set" -a autoconnect -d "Enables or disables auto-connect. When enabled, this feature will automatically try to connect to VPN on operating system startup"
-complete -c nordvpn -n "__fish_seen_subcommand_from $settings and __fish_seen_subcommand_from set" -a cybersec    -d "Enables or disables CyberSec. When enabled, the CyberSec feature will automatically block suspicious websites so that no malware or other cyber threats can infect your device. Additionally, no flashy ads will come into your sight. More information on how it works: https://nordvpn.com/features/cybersec/."
-complete -c nordvpn -n "__fish_seen_subcommand_from $settings and __fish_seen_subcommand_from set" -a default     -d "Restores settings to their default values."
-complete -c nordvpn -n "__fish_seen_subcommand_from $settings and __fish_seen_subcommand_from set" -a dns         -d "Sets custom DNS servers."
-complete -c nordvpn -n "__fish_seen_subcommand_from $settings and __fish_seen_subcommand_from set" -a firewall    -d "Enables or disables use of the firewall"
-complete -c nordvpn -n "__fish_seen_subcommand_from $settings and __fish_seen_subcommand_from set" -a killswitch  -d "Enables or disables Kill Switch. This security feature blocks your device from accessing the Internet while not connected to the VPN or in case connection with a VPN server is lost."
-complete -c nordvpn -n "__fish_seen_subcommand_from $settings and __fish_seen_subcommand_from set" -a notify      -d "Enables or disables notifications."
-complete -c nordvpn -n "__fish_seen_subcommand_from $settings and __fish_seen_subcommand_from set" -a obfuscate   -d "Enables or disables obfuscation. When enabled, this feature allows to bypass network traffic sensors which aim to detect usage of the protocol and log, throttle or block it."
-complete -c nordvpn -n "__fish_seen_subcommand_from $settings and __fish_seen_subcommand_from set" -a protocol    -d "Sets the protocol."
-complete -c nordvpn -n "__fish_seen_subcommand_from $settings and __fish_seen_subcommand_from set" -a protocol    -d "Sets the technology."
+
+complete -c nordvpn -n "__fish_seen_subcommand_from $settingOptions and __fish_seen_subcommand_from $settingKeywords" -a autoconnect -d "Enables or disables auto-connect. When enabled, this feature will automatically try to connect to VPN on operating system startup"
+complete -c nordvpn -n "__fish_seen_subcommand_from $settingOptions and __fish_seen_subcommand_from $settingKeywords" -a cybersec   -d "Enables or disables CyberSec. When enabled, the CyberSec feature will automatically block suspicious websites so that no malware or other cyber threats can infect your device. Additionally, no flashy ads will come into your sight. More information on how it works: https://nordvpn.com/features/cybersec/."
+complete -c nordvpn -n "__fish_seen_subcommand_from $settingOptions and __fish_seen_subcommand_from $settingKeywords" -a default    -d "Restores settings to their default values."
+complete -c nordvpn -n "__fish_seen_subcommand_from $settingOptions and __fish_seen_subcommand_from $settingKeywords" -a dns        -d "Sets custom DNS servers."
+complete -c nordvpn -n "__fish_seen_subcommand_from $settingOptions and __fish_seen_subcommand_from $settingKeywords" -a firewall   -d "Enables or disables use of the firewall"
+complete -c nordvpn -n "__fish_seen_subcommand_from $settingOptions and __fish_seen_subcommand_from $settingKeywords" -a killswitch -d "Enables or disables Kill Switch. This security feature blocks your device from accessing the Internet while not connected to the VPN or in case connection with a VPN server is lost."
+complete -c nordvpn -n "__fish_seen_subcommand_from $settingOptions and __fish_seen_subcommand_from $settingKeywords" -a notify     -d "Enables or disables notifications."
+complete -c nordvpn -n "__fish_seen_subcommand_from $settingOptions and __fish_seen_subcommand_from $settingKeywords" -a obfuscate  -d "Enables or disables obfuscation. When enabled, this feature allows to bypass network traffic sensors which aim to detect usage of the protocol and log, throttle or block it."
+complete -c nordvpn -n "__fish_seen_subcommand_from $settingOptions and __fish_seen_subcommand_from $settingKeywords" -a protocol   -d "Sets the protocol."
+complete -c nordvpn -n "__fish_seen_subcommand_from $settingOptions and __fish_seen_subcommand_from $settingKeywords" -a protocol   -d "Sets the technology."
 
 ## autoconnect
 ##complete -c nordvpn -n "__fish_seen_subcommand_from autoconnect" ""
