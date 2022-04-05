@@ -1,26 +1,27 @@
 "mics 
-set number
+set number relativenumber
 set showcmd
 set wildmenu
 set ttimeoutlen=10
 set laststatus=2
 set statusline=%F\  "Filename
 set statusline+=[%c,%l] "[Column,Row]
-
 set clipboard+=unnamedplus
 set confirm
-colorscheme peachpuff
 
-autocmd ColorScheme *
-        \ highlight MatchParen  cterm=none      ctermfg=White   ctermbg=DarkGrey   |
-        \ highlight Visual      cterm=none      ctermfg=Black   ctermbg=Green      |
-        \ highlight SpellBad    cterm=underline ctermfg=Red     ctermbg=Black      |
-        \ highlight SpellCap    cterm=underline ctermfg=DarkRed ctermbg=Black      |
-        \ highlight Search      cterm=none      ctermfg=Black   ctermbg=Magenta    |
-        \ highlight DiffAdd     cterm=none      ctermfg=Black   ctermbg=DarkGreen  |
-        \ highlight DiffChange  cterm=italic    ctermfg=Black   ctermbg=DarkBlue   |
-        \ highlight DiffDelete  cterm=bold      ctermfg=Black   ctermbg=Red        |
-        \ highlight DiffText    cterm=italic    ctermfg=Black   ctermbg=Blue
+" colours
+autocmd colorscheme *
+        \ highlight matchparen  cterm=none      ctermfg=white   ctermbg=darkgrey   |
+        \ highlight visual      cterm=none      ctermfg=black   ctermbg=green      |
+        \ highlight spellbad    cterm=underline ctermfg=red     ctermbg=black      |
+        \ highlight spellcap    cterm=underline ctermfg=darkred ctermbg=black      |
+        \ highlight search      cterm=none      ctermfg=black   ctermbg=magenta    |
+        \ highlight diffadd     cterm=none      ctermfg=black   ctermbg=darkgreen  |
+        \ highlight diffchange  cterm=italic    ctermfg=black   ctermbg=darkblue   |
+        \ highlight diffdelete  cterm=bold      ctermfg=black   ctermbg=red        |
+        \ highlight difftext    cterm=italic    ctermfg=black   ctermbg=blue
+
+colorscheme peachpuff
 
 " searching
 set ignorecase
@@ -49,36 +50,20 @@ noremap J }
 noremap K {
 nnoremap Y y$
 nnoremap <C-l> :noh <CR>
-inoremap <C-Space> <ESC>
 vnoremap p pgvy
+tnoremap <Esc> <C-\><C-n>
+noremap <leader>s :set spell! spelllang=en_gb<CR>
+noremap <leader><leader> i<space><esc>
 
-"fzf
-nnoremap <leader>ff :FZF! <CR>
-nnoremap <leader>fh :FZF! ~ <CR>
-
-" move by screen line instead of file line
-nnoremap j gj
-nnoremap <down> gj
-nnoremap k gk
-nnoremap <up> gk
+" move by screen line instead of file line (unless prepended with number)
+nnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
+nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
 
 " indentation
 nnoremap <Tab>   >>
 nnoremap <S-Tab> <<
 vnoremap <Tab>   >><Esc>gv
 vnoremap <S-Tab> <<<Esc>gv
-
-" spelling
-nnoremap s :setlocal spell spelllang=en_gb <CR>
-nnoremap S :set nospell <CR>
-
-" preview markdown
-nnoremap <leader>p :w <bar> ! pandoc -f markdown -t pdf -C % \| zathura -<CR>
-
-" terminal stuff
-nnoremap <leader>w :! alacritty --working-directory ./ & disown<CR><CR>
-tnoremap <Esc> <C-\><C-n>
-
 
 " buffers 
 nnoremap <Leader>bb :buffers<CR>:buffer<Space>
@@ -105,36 +90,36 @@ cmap Wq wq
 cmap WQ wq
 cmap Q q
 
-function! MathAndLiquid()
-    "" Define certain regions
+"syntax
+autocmd BufNewFile,BufRead *.yuck set syntax=lisp
+autocmd BufNewFile,BufRead *.rasi, *.scss set syntax=css
+
+function! Maths()
     " Block math. Look for "$$[anything]$$"
     syn region math start=/\$\$/ end=/\$\$/
     " inline math. Look for "$[not $][anything]$"
     syn match math_block '\$[^$].\{-}\$'
-
-    " Liquid single line. Look for "{%[anything]%}"
-    syn match liquid '{%.*%}'
-    " Liquid multiline. Look for "{%[anything]%}[anything]{%[anything]%}"
-    syn region highlight_block start='{% highlight .*%}' end='{%.*%}'
-    " Fenced code blocks, used in GitHub Flavored Markdown (GFM)
+    " Fenced code blocks
     syn region highlight_block start='```' end='```'
 
-    "" Actually highlight those regions.
+    "" highlight those regions.
     hi link math Statement
-    hi link liquid Statement
     hi link highlight_block Function
     hi link math_block Function
 endfunction
 
-" Call everytime we open a Markdown file
-autocmd BufRead,BufNewFile,BufEnter *.md,*.markdown call MathAndLiquid()
+" preview 
+autocmd BufRead,BufNewFile,BufEnter *.md,*.markdown 
+    \ call Maths() |
+    \ nnoremap <leader>p :w <bar> ! pandoc -f markdown -t pdf -C % \| zathura -<CR>
+autocmd FileType glsl nnoremap <leader>p :w<CR> :GlslView<CR>
 
 "PACKAGE BINDS AND SETTINGS
 
 "mics
 filetype plugin on
-nnoremap <leader>l :Align
-vnoremap <leader>l :Align
+syntax on
+set nocompatible
 
 " autocomplete
 let g:deoplete#enable_at_startup = 1
@@ -154,22 +139,25 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_enable_racket_racket_checker = 1
-let g:syntastic_racket_racket_args="--load"
-let g:syntastic_racket_checkers = ['racket']
 
-" nvim's personal venv
-let g:python3_host_prog = "/home/bracktus/.config/nvim/nvimVenv/bin/python"
+" lispy
+let g:slime_target = "neovim"
 
 call plug#begin()
-Plug 'vim-scripts/Align'
 Plug 'tpope/vim-commentary'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'deoplete-plugins/deoplete-jedi'
-Plug 'davidhalter/jedi-vim'
 Plug 'tmsvg/pear-tree'
 Plug 'vim-syntastic/syntastic'
-Plug 'JuliaEditorSupport/julia-vim'
-Plug 'dag/vim-fish'
 Plug 'ap/vim-css-color'
+
+Plug 'jpalardy/vim-slime' , { 'branch': 'main'}
+Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
+
+Plug 'tikhomirov/vim-glsl'
+Plug 'timtro/glslView-nvim'
 call plug#end()
+
+" Plug 'dag/vim-fish'
+" Plug 'deoplete-plugins/deoplete-jedi'
+" Plug 'davidhalter/jedi-vim'
+
